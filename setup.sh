@@ -10,7 +10,7 @@ data="data:image/jpeg;base64,$(base64 ${FILES[i]} -w 0)"
 
 curl -X PUT -H "Content-Type: application/json; charset=utf-8" -d @- 127.0.0.1:5000/api/$i --trace-ascii trace.out << EOT
 {
-"url": "$filename",
+"name": "$filename",
 "data": "$data"
 }
 EOT

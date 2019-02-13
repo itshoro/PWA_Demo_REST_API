@@ -16,20 +16,20 @@ class Image(Resource):
     def post(self, id):
         parser = reqparse.RequestParser()
         parser.add_argument("data")
-        parser.add_argument("url")
+        parser.add_argument("name")
 
         args = parser.parse_args()
 
         for img in imgs:
             if (id == img["id"]):
                 img["data"] = args["data"]
-                img["url"] = args["url"]
+                img["name"] = args["name"]
                 return img, 200
 
         img = {
             "id"   : id,
             "data" : args["data"],
-            "url"  : args["url"]
+            "name"  : args["name"]
         }
         imgs.append(img)
         return img, 201
@@ -37,7 +37,7 @@ class Image(Resource):
     def put(self, id):
         parser = reqparse.RequestParser()
         parser.add_argument("data")
-        parser.add_argument("url")
+        parser.add_argument("name")
 
         args = parser.parse_args()
 
@@ -48,7 +48,7 @@ class Image(Resource):
         img = {
             "id"   : id,
             "data" : args["data"],
-            "url"  : args["url"]
+            "name"  : args["name"]
         }
         imgs.append(img)
         return img, 201
