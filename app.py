@@ -1,13 +1,9 @@
-from flask import Flask
+from flask import Flask, request
 from flask_restful import Api, Resource, reqparse
+import random
 
 imgs = [
-    {
-        "id"   : 42,
-        "data" : "Some Data",
-        "type" : ["Test"],
-        "url"  : "127.0.0.1"
-    }
+
 ]
 
 class Image(Resource):
@@ -20,7 +16,6 @@ class Image(Resource):
     def post(self, id):
         parser = reqparse.RequestParser()
         parser.add_argument("data")
-        parser.add_argument("type")
         parser.add_argument("url")
 
         args = parser.parse_args()
@@ -28,14 +23,12 @@ class Image(Resource):
         for img in imgs:
             if (id == img["id"]):
                 img["data"] = args["data"]
-                img["type"] = args["type"]
                 img["url"] = args["url"]
                 return img, 200
 
         img = {
             "id"   : id,
             "data" : args["data"],
-            "type" : args["type"],
             "url"  : args["url"]
         }
         imgs.append(img)
@@ -44,7 +37,6 @@ class Image(Resource):
     def put(self, id):
         parser = reqparse.RequestParser()
         parser.add_argument("data")
-        parser.add_argument("type")
         parser.add_argument("url")
 
         args = parser.parse_args()
@@ -56,7 +48,6 @@ class Image(Resource):
         img = {
             "id"   : id,
             "data" : args["data"],
-            "type" : args["type"],
             "url"  : args["url"]
         }
         imgs.append(img)
@@ -69,5 +60,5 @@ class Image(Resource):
 app = Flask(__name__)
 api = Api(app)
 
-api.add_resource(Image, "/imgs/<int:id>")
-app.run()
+api.add_resource(Image, "/api/<int:id>")
+app.run(debug=True)
