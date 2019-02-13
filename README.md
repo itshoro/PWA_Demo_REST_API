@@ -10,13 +10,15 @@ pip install flask
 pip install flask-restful
 ```
 
-## Usage 
+## Usage
+
+Create an `imgs` folder  and add `.jpg` files that are to be served via this API.
 
 ```
 python app.py
 ```
 
-You can use GET, PUT, PUSH and DELETE Methods on `127.0.0.1:5000/api/` to receive, add, change or remove entries.
+You can use GET, PUT, PUSH and DELETE Methods on `127.0.0.1:5000/api/` to get, add, change or remove entries.
 Responses are in a JSON format.
 
-The `setup.sh` script adds all `.jpg` files you add from an `imgs` folder via a PUT Method.
+The `setup.sh` script adds all `.jpg` files from the `imgs` folder via a PUT Method.
