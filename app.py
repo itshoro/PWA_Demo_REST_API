@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask_restful import Api, Resource, reqparse
-import random
+from random import randint
 
 imgs = [
 
@@ -8,9 +8,12 @@ imgs = [
 
 class Image(Resource):
     def get(self, id):
-        for img in imgs:
-            if (id == img["id"]):
-                return img, 200
+        if (id is not None):
+            for img in imgs:
+                if(img["id"] == id):
+                    return img, 200, {'Access-Control-Allow-Origin': '*'}
+        elif (len(imgs)):
+            return imgs[randint(0, len(imgs))], 200, {'Access-Control-Allow-Origin': '*'}
         return "Image not found", 404
 
     def post(self, id):
