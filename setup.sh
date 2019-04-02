@@ -2,7 +2,7 @@
 FILES=(imgs/*)
 count=0
 len=${#FILES[@]}
-for ((i=0; i<$len; i++)); 
+for ((i=0; i<$len; i++));
 do
 
 filename=`basename ${FILES[i]} .jpg`
