@@ -1,5 +1,7 @@
 .vscode
 imgs/*.jpg
+changeThese
+trace.out
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
